@@ -1,6 +1,3 @@
-//this is just a test to test deploy
-
-
 require('dotenv').config();
 
 const express = require('express');
