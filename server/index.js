@@ -1,12 +1,11 @@
 require('dotenv').config();
 
-
-
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const axios = require('axios');
+const path = require('path');
 
 const app = express();
 const port = 3080;
@@ -17,7 +16,6 @@ app.use(morgan('dev'));
 
 // Anthropic API key (use environment variable in production)
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-
 
 async function callClaudeApi(prompt) {
     try {
@@ -51,6 +49,15 @@ app.post('/api/chat', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'An error occurred while processing your request' });
     }
+});
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 app.listen(port, () => {

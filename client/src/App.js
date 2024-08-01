@@ -18,7 +18,7 @@ function App() {
     
     try {
       console.log("Sending request to backend...");
-      const response = await fetch('http://localhost:3080/api/chat', {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

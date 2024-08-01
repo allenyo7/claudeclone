@@ -1,8 +1,13 @@
-# Dependencies
-/node_modules
+# Root level
+node_modules/
+.env
 
-# Production build
-/build
+# Client
+/client/build
+/client/node_modules
+
+# Server
+/server/node_modules
 
 # Misc
 .DS_Store
@@ -11,12 +16,6 @@
 .env.test.local
 .env.production.local
 
-.env
-
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Environment variables
-.env
