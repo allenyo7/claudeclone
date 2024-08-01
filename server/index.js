@@ -8,7 +8,7 @@ const axios = require('axios');
 const path = require('path');
 
 const app = express();
-const port = 3080;
+const port = process.env.PORT || 3080;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -54,8 +54,7 @@ app.post('/api/chat', async (req, res) => {
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
+// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });

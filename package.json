@@ -1,11 +1,13 @@
 {
     "name": "claude-clone",
     "version": "1.0.0",
+    "private": true,
     "scripts": {
       "start": "cd server && npm start",
-      "build": "cd client && npm run build",
+      "build": "cd client && npm install && npm run build && cd ../server && npm install",
       "install-all": "npm install && cd client && npm install && cd ../server && npm install"
+    },
+    "dependencies": {
+      "express": "^4.19.2"
     }
   }
-
-  
